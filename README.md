@@ -46,6 +46,12 @@ curl -v -H "Accept: application/json" http://localhost:3333/people
 curl -v -H "Accept: text/html" http://localhost:3333/people 
 ```
 
+**Make a HTTP GET request to /people/3. Get the resource as json.**
+
+```
+curl -H 'Accept: application/json' http://localhost:3333/people/3
+```
+
 ## Ajax GET
 
 We are going to make more requests to the backend API. This time we are going to make an Ajax GET request, 

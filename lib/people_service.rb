@@ -4,17 +4,21 @@ module PeopleApp
 
   class PeopleService
 
-    def initialize(format)
-      @format = format
-    end
-
     def call(env)
       request = Rack::Request.new(env)
       response = Rack::Response.new
+      content = ''
 
       media_type = mime_type(env)
-      people =  PeopleApp::People.new(media_type)
-      content = people.render
+
+      if request.path == '/people'
+        content = PeopleApp::People.render(media_type)
+      elsif request.path =~ /\/people\/+\d/
+        id = request.path.split('/').last.to_i
+        content = PeopleApp::People.find(id).render(media_type)
+      else
+        content = "Undefined route: #{request.path}"
+      end
 
       response["Content-Type"] = media_type
       response.write(content)

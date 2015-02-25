@@ -28,11 +28,19 @@ module PeopleApp
              value = instance_variable_get(v)
              value = value.to_h if value.respond_to?(:to_h)
              [v.to_s.sub('@','').to_sym, value]
-      end.flatten]
+           end.flatten]
     end
 
     def to_json
       self.to_h.to_json
+    end
+
+    def render(format)
+      if format == "text/html"
+        self.to_html
+      else format == "application/json"
+        self.to_json
+      end
     end
 
   end

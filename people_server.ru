@@ -11,12 +11,11 @@ use Rack::Static,
     :index => 'index.html',
     :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
 
+# Serve People/Person Resources
 map "/people" do
-  run PeopleApp::PeopleService.new('html')
+  run PeopleApp::PeopleService.new
 end
 
 # Handle unknown URLs
 headers = {'Content-Type' => 'text/html', 'Content-Length' => '9'}
 run lambda { |env| [404, headers, ['Not Found']] }
-
-# rackup

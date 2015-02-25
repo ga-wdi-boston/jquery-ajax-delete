@@ -2,32 +2,29 @@ require_relative 'person'
 
 module PeopleApp
   class People
-    attr_accessor :all, :format
+    @all = []
 
-    def initialize(format)
-      # default format
-      @format = format || 'text/html'
-
-      # collection of people
-      @all = []
-
-      # create a bunch
-      20.times do
-        @all << Person.new(Faker::Name.name, Faker::Job.title, Faker::Company.name, ADDRESSES.sample)
-      end
+    # create a bunch of people
+    20.times do
+      @all << Person.new(Faker::Name.name, Faker::Job.title, Faker::Company.name, ADDRESSES.sample)
     end
 
-    def to_html
-      #      content = '<ul>People '
+    # find the first, should be only, person with a specific id.
+    def self.find(id)
+      @all.map do |person|
+        person if person.id == id
+      end.compact.first
+    end
+
+    def self.to_html
       content = '<dl>'
       @all.each do |person|
         content += person.to_html
       end
-      #      content += '</ul>'
       content += '</dl>'
     end
 
-    def to_json
+    def self.to_json
       content = '['
       @all.each do |person|
         content += person.to_json
@@ -35,7 +32,7 @@ module PeopleApp
       content += ']'
     end
 
-    def render
+    def self.render(format)
       if format == "text/html"
         self.to_html
       else format == "application/json"
