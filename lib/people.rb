@@ -25,11 +25,11 @@ module PeopleApp
     end
 
     def self.to_json
-      content = '['
+      content = []
       @all.each do |person|
-        content += person.to_json
+        content << person.to_h
       end
-      content += ']'
+      content.to_json
     end
 
     def self.render(format)
