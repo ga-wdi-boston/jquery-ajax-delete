@@ -11,12 +11,71 @@ By the end of this, students should be able to:
 - Know how to load JSON from a backend server.
 - Know how to load HTML from a backend server.
 
+## Asychronous vs Synchronous?
+
+### Lab
+Find a Recipe that allows us to do a couple of things at the same time. 
+
+For example. Bake a chocolate cake. **Don't really use this reciple:-)**
+
+1. Warm up oven to 325 degrees for 10 minutes.
+2. Put three eggs in a mixing bowl.
+3. Melt a 1/4 pound of chocolate on a very low flame for 5 minutes.
+4. Add 2 cups of flour in the mixing bowl and mix vigorously.
+5. Add 1/3 stick of melted butter, yep in the mixing bowl.
+6. Pour melted chocolate into bowl and mix.
+7. Pour contents of bowl into a cake pan.
+8. Put cake pan in the over for 25 minutes.
+
+#### Tell someone how you would follow this Recipe in a synchronous manner.
+
+#### Tell someone how you would follow this Recipe in a asynchronous manner.
+
+
+### Demo: Asynchronous Javascript.
+
+Create a file public/js/async_timeout.js
+
+```
+var sayHello = ƒ(){
+  console.log("Say Hello");
+};
+
+// 5 seconds                                                                    
+var numMilliseconds = 5000;
+
+setTimeout(sayHello, numMilliseconds);
+
+console.log("Say Goodbye");
+```
+
+run this file
+
+```
+node async_timeout.js
+```
+
+Notice how the sayHello function is being executed asynchronously. We actually wait five seconds before we execute the function passed to setTimeout.
+
+### Lab
+
+Create two javascript files. One to log each step of your Recipe creation synchronously. Another to log each step asynchronously.
+
+### Demo: 
+
+You have been using functions that invoked asynchronously. Event handlers are invoked asychronously. The handler functions are only invoked, typically, after a user action.
+
+And they will ONLY be run after all other synchronous javascript is run.
+
+### Lab
+Watch this [Help, I'm stuck in an event loop.](https://vimeo.com/96425312)
+
 ## Setup
 
 - Fork and clone
 - Run `bundle install`
 
-
+## 
 ## Remote Server.
 
 Here we're going to start up a server that provides an API. The API will be for *Person* resources.
