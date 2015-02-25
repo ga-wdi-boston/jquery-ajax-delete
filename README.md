@@ -16,128 +16,129 @@ By the end of this, students should be able to:
 - Fork and clone
 - Run `bundle install`
 
-## Instructions
 
-### Run the simplest Rack application.
-*You remember Ruby, you're good ole friend, Don't you miss her?*
+## Remote Server.
 
-* Create a rack application, rackup.  
-	In config.ru  
-	
-```
-run lambda { |env|
-  [
-    200,
-   {"Content-Type" => "text/html" },
-   ["Hello World"]
-  ]
-}
-```
+Here we're going to start up a server that provides an API. The API will be for *Person* resources.
 
-* Run this rack application, this will be the backend server. *This will run a server on port 9292.*  
-```
-  rackup
-```
-* Load HTML from the backend.  
-```
-  http://localhost:9292
-```
-
-### Run a Rack app to serve static files
-This will run the files in the public directory.  
+This backend server will also serve up all the static files, (html,js,css, ...) in the public directory.
 
 
-* In config.ru  
+### Startup a the server on port 3333.
 
 ```
- #Serve static files, (html, js, css, ...)                                       
-root = "public"
-urls = Dir.glob("#{root}/*").map { |fn| fn.gsub(/#{root}/, '')}
-
-use Rack::Static,
-    :urls => urls,
-    :root => root,
-    :index => 'index.html',
-    :header_rules => [[:all, {'Cache-Control' => 'public, max-age=3600'}]]
-    
- # Handle unknown URLs                                                           
-headers = {'Content-Type' => 'text/html', 'Content-Length' => '9'}
-run lambda { |env| [404, headers, ['Not Found']] }    
-
+rackup -p 3333 people_server.ru
 ```
 
-* Run the rack app on port 333.
+### Backend API
+
+Let's explore what the backend Person API is.  
+
+**Make a HTTP GET request to /people. Get the resource as json.**
 
 ```
-rackup -p 3333 config.ru
+curl -v -H "Accept: application/json" http://localhost:3333/people
 ```
 
-* Look at public/index.html. *Pretty simple page ey?*    
-
-* Create a simple javascript file in public/js/simple.js
+**Make a HTTP GET request to /people. Get the resource as HTML.**
 
 ```
-$(document).ready(ƒ(){
-  $('#messagesDiv').html('foobar');
+curl -v -H "Accept: text/html" http://localhost:3333/people 
+```
+
+## Ajax GET
+
+We are going to make more requests to the backend API. This time we are going to make an Ajax GET request, 
+
+*Yep, it is just a plain ole HTTP Request*
+
+### Create a public/index.html file.  
+
+```
+<html>
+  <head>
+    <title>Ajax GET</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <header>
+      <h1>Ajax GET</h1>
+    </header>
+    <div id='container'>
+      <div id='messagesDiv'></div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/people_get.js"></script>
+
+  </body>
+</html>
+```
+
+Pretty standard HTML file that just loads jquery and one other javascript file.
+
+
+#### Create a public/js/people_get.js file.  
+
+```
+$(document).ready(function(){
+
+  var getPeople = function(data){
+    $('#container').html(data);
+  },
+      errorHandler = function(jqXHR,textStatus,errorThrown){
+        var msg = "Request Failed: "+ textStatus;
+        alert(msg);
+        console.log(msg);
+      };
+
+  $.ajax({
+    url: '/people',
+    dataType: 'html'
+  })
+    .done(getPeople)
+    .fail(errorHandler)
+    .always(function(){ console.log('Finished Ajax GET REQUEST'); });
 });
 ```
 
-* In the browser to to http://localhost:3333  
+Lets review what is going on here!
 
+* All code is wrapped in document ready so it will be executed ONLY after the DOM is fully loaded.
+* We declare a function that will used to handle Ajax GET responses from the backend. 
 
-Here, we have created the simple of servers. All it will
-do is load files from the file system. In production we would use a web server like Apache or NGINX to get these static files/assets.
+	*All it does in put the data returned from the server inside the container div.*  
+	
+* We declare a function that will process errors.  
 
-### Send an Ajax GET request to the server.
+	*Gets the error status and creates an alert dialog*  
+	
+* Call JQuery's ajax method. *Go look up this method from the JQuery online docs*  
 
-* Create a *route*, /json , and ruby code to serve up JSON.  
-In config.ru  
+### Send the Ajax GET Request.
 
-```
- # just returns simple json for /json
-send_json = lambda do |env|
-  [200, {"Content-Type" => "application/json"}, ["{name: 'tom', age: 57}"] ]
-end
+**Go to http://localhost:3000.**
 
-map "/json" do
-  run send_json
-end
+This will load the HTML returned from the API into the page.
 
- # Handle unknown URLs  
-```
-
-Go to /json URL in your browser. You should see the JSON.
-
-* Create an Ajax GET request to get the json from the backend.
+** Change the representation of the resource we're looking for from HTML to JSON**
 
 ```
- 
-```
-
-
-
-
-```javascript
-function(){
-  var x = 2
-  var y = 3
-  return x + y
-};
+$.ajax({
+    url: '/people',
+  })
 
 ```
 
-## Bonus (Optional Section)
+Here we have just remove the dataType property. By default, this will ask for a JSON Representation, 'application/json' mime-type.
 
-If you're looking for extra challenge or practice once you've completed the above, try to...
+**Go to http://localhost:3000.**
 
-## Notes
+This will load the JSON returned from the API into the page.
 
-Gotcha's and extra information
 
-## Additional Resources
+## Lab 
 
-List additional related resources such as videos, blog posts and official documentation.
+Using the JSON returned for all the people make a HTML ordered list of all the people. *Feel free to make it perty*  
 
-- Item 1
-- Item 2
-- Item 3
