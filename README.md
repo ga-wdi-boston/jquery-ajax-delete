@@ -70,12 +70,18 @@ And they will ONLY be run after all other synchronous javascript is run.
 ### Lab
 Watch this [Help, I'm stuck in an event loop.](https://vimeo.com/96425312)
 
+## Ajax
+
+**Asynchronous Javascript with XML** 
+
+*XML is hardly ever used anymore, really. JSON so much more common now.*
+
 ## Setup
 
 - Fork and clone
 - Run `bundle install`
 
-## 
+
 ## Remote Server.
 
 Here we're going to start up a server that provides an API. The API will be for *Person* resources.
@@ -110,6 +116,8 @@ curl -v -H "Accept: text/html" http://localhost:3333/people
 ```
 curl -H 'Accept: application/json' http://localhost:3333/people/3
 ```
+
+Do the above using your browser. *May want to install this [JSON Prettifier](http://goo.gl/0ueVkS). Makes JSON more readable*  
 
 ## Ajax GET
 
