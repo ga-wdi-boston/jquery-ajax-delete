@@ -1,6 +1,5 @@
 $(document).ready(function(){
-
-  // This is the callback handler for the Ajax GET
+  
   var getPeople = function(data){
     // data will be the contents of the HTTP Response
     // from the server.
@@ -9,16 +8,16 @@ $(document).ready(function(){
     // people that the server knows about.
     // Build html for that person and inject into
     // the DOM.
-    var personHTML = '';
+    var personTemplate = function(person){
+      return "<div id='" + person.id  + "'>" +
+                "<dt>Name</dt><dd>" + person.name + "</dd>" +
+                "<dt>Occupation</dt><dd>" + person.occupation + "</dd>" +
+                "<dt>Company</dt><dd>" + person.company_name + "</dd>" +
+              "</div><hr><br>";
+    };
+
     data.forEach(function(person){
-      var personHTML = "<div id='" + person.id  + "'> <dt>Name</dt><dd>";
-      personHTML += person.name + "</dd>";
-      personHTML += "<dt>Occupation</dt><dd>" + person.occupation + "</dd>";
-      personHTML += "<dt>Company</dt><dd>" + person.company_name + "</dd>";
-      personHTML += "</div><hr><br>";
-      $("#container").append(personHTML);
-
-
+      $("#container").append(personTemplate(person));
     });;
   };
 
@@ -37,5 +36,13 @@ $(document).ready(function(){
     // accepts a function that will act as a callback handler.
   })
     .done(getPeople)
-    .fail(errorHandler);
+    .fail(errorHandler)
+    .always(function(){ console.log('Finished AJAX GET Request'); });
+    // We could also have written this as
+    //   var request = $.ajax({ ... });
+    //   request.done(getPeople);
+    //   request.fail(errorHandler);
+    //   request.always(function(){ console.log('Finished AJAX GET Request'); });
+    // And, of course, we could also have used either named or anonymous functions for any of these callbacks.
+
 });
