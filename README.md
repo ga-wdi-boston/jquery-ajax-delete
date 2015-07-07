@@ -58,14 +58,14 @@ Consider the following recipe for chocolate cake.
 2. Put three eggs in a mixing bowl.
 3. Melt a 1/4 pound of chocolate on a very low flame for 5 minutes.
 4. Add 2 cups of flour in the mixing bowl and mix vigorously.
-5. Add 1/3 stick of melted butter, yep in the mixing bowl.
+5. Add 1/3 stick of melted butter to the mixing bowl.
 6. Pour melted chocolate into bowl and mix.
 7. Pour contents of bowl into a cake pan.
-8. Put cake pan in the over for 25 minutes.
+8. Put cake pan in the oven for 25 minutes.
 
 In pairs, walk through how you would follow this Recipe in a synchronous manner. Then, walk through how you would follow this Recipe in a asynchronous manner.
 
-Create two javascript files - `synchronous-cake.js` and `asynchronous-cake.js`. Each of these files should print out every step of the recipe. However, the `synchronous` file should act as if the recipe was being followed synchronously, while the `asynchronous` file should use timeout (replace 1 minute in the recipe with 1 second in your code) to act as if the recipe was being followed asynchronously.
+Next create a JavaScript file called `asynchronous-cake.js` to represent the recipe. Your code should print out "Completed Step X : ... " after completing each step of the recipe; use `setTimeout` (replacing 1 minute in the recipe with 1 second in your code) to let your code work asynchronously.
 
 ### Additional Resources
 > Confused? Watch this video, ["Help, I'm stuck in an event loop."](https://vimeo.com/96425312)
@@ -89,19 +89,19 @@ First, we're going to start up a server that provides an API. The API will be fo
 
 Let's explore what the backend Person API is.  
 
-**Make a HTTP GET request to /people. Get the resource as json.**
+**Make an HTTP GET request to /people. Get the resource as json.**
 
 ```
 curl -v -H "Accept: application/json" http://localhost:3333/people
 ```
 
-**Make a HTTP GET request to /people. Get the resource as HTML.**
+**Make an HTTP GET request to /people. Get the resource as HTML.**
 
 ```
 curl -v -H "Accept: text/html" http://localhost:3333/people
 ```
 
-**Make a HTTP GET request to /people/3. Get the resource as json.**
+**Make an HTTP GET request to /people/3. Get the resource as json.**
 
 ```
 curl -H 'Accept: application/json' http://localhost:3333/people/3
@@ -109,84 +109,92 @@ curl -H 'Accept: application/json' http://localhost:3333/people/3
 
 Now do the above again using your browser.
 
-> You may want to install this [JSON Prettifier](http://goo.gl/0ueVkS) for your browser; it makes JSON more readable.
+> You may want to install the [JSON Prettifier](http://goo.gl/0ueVkS) or [JSON Formatter](http://goo.gl/ZDLWY0) Chrome extensions; these tools make JSON more readable when viewed from a browser window.
 
 <hr>
 
-Let's make some more requests to the backend API - this time, however, we're going to do it by using AJAX GET.
+OK! Now let's make some more requests to the backend API - this time, however, we're going to do it by using AJAX GET.
 
-> Don't worry! Remember, under the hood, AJAX is just making plain ol' HTTP requests.
+1. **Create a public/index.html file.**
 
-#### **Create a public/index.html file.**
+    ```
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>AJAX GET</title>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+      </head>
+      <body>
+        <header>
+          <h1>AJAX GET</h1>
+        </header>
+        <div id='container'>
+          <div id='messagesDiv'></div>
+        </div>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/people_get.js"></script>
 
-```
-<html>
-  <head>
-    <title>AJAX GET</title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-  </head>
-  <body>
-    <header>
-      <h1>AJAX GET</h1>
-    </header>
-    <div id='container'>
-      <div id='messagesDiv'></div>
-    </div>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/people_get.js"></script>
+      </body>
+    </html>
+    ```
 
-  </body>
-</html>
-```
+    This is a pretty standard HTML file; it loads jQuery and one other JavaScript file.
 
-  This is a pretty standard HTML file that just loads jQuery and one other JavaScript file.
+2. **Create a public/js/people_get.js file.**
 
+    ```
+    $(document).ready(function(){
 
-#### **Create a public/js/people_get.js file.**
-
-```
-$(document).ready(function(){
-
-  var getPeople = function(data){
-    $('#container').html(data);
-  },
-      errorHandler = function(jqXHR,textStatus,errorThrown){
+      var getPeople = function(data){
+        $('#container').html(data);
+      };
+      var errorHandler = function(jqXHR,textStatus,errorThrown){
         var msg = "Request Failed: "+ textStatus;
         alert(msg);
         console.log(msg);
       };
 
-  $.ajax({
-    url: '/people',
-    dataType: 'html'
-  })
-    .done(getPeople)
-    .fail(errorHandler)
-    .always(function(){ console.log('Finished AJAX GET Request'); });
-});
-```
+      $.ajax({
+        url: '/people',
+        dataType: 'html'
+      })
+        .done(getPeople)
+        .fail(errorHandler)
+        .always(function(){ console.log('Finished AJAX GET Request'); });
 
-Lets review what's going on here.
+      // We could also have written this as
+      //   var request = $.ajax({ ... });
+      //   request.done(getPeople);
+      //   request.fail(errorHandler);
+      //   request.always(function(){ console.log('Finished AJAX GET Request'); });  
+      // And, of course, we could also have used either named or anonymous functions for any of these callbacks.
+
+    });
+    ```
+
+  Lets review what's going on here.
 
   * All code is wrapped in our `$(document).ready`, so it will be executed ONLY after the DOM is fully loaded.
 
-  * We declare a function that will used to handle AJAX GET responses from the backend.
+  * We called JQuery's `ajax` method, which accepts an object of settings as a parameter, and returns a 'request' object.
+   > _To be precise, it returns a [JQXHR](http://api.jquery.com/Types/#jqXHR) object; for more details, look up `$.ajax` in the jQuery documentation._
 
-	>All this will do is put the data returned from the server inside the container div.
+  * Then, we called that 'request' object's `done` method, passing in a callback that would used to handle AJAX GET responses from the backend. The `done` method then returns the original 'request' object.
+   >_The specific callback above, `getPeople`, takes the data it gets from the server and inserts it, as text, into the #container div._
 
-  * We declare a function that will process errors. Specifically, it gets the error status and creates an alert dialog.
+  * Next, we called that 'request' object's `fails` method, passing in a callback that would be used to process errors.
+   >_The specific callback above, `errorHandler` takes the error's status code and creates an alert dialog from it._
 
-  * Call JQuery's `ajax` method. *Go look up this method from the jQuery online docs*  
+  * Finally, we called the 'request' object's `always` method, passing in a callback that we always want to run after the request, whether it was or was not successful.
+  >_The `done` and `fail` callbacks are almost always specified, but `always` is only used sometimes. Weird, right?_
 
-#### **Send the AJAX GET Request.**
+3. **Run Our JS and Send the AJAX GET Request.**
 
-  a. Open http://localhost:3000 in your browser.
+  a. Open http://localhost:3333 in your browser. This will load the HTML returned from the API into the page.
 
-  > This will load the HTML returned from the API into the page.
-
-  b. Change the representation of the resource we're looking for from HTML to JSON**
+  b. Change the representation of the resource we're looking for from HTML to JSON; since JSON representation ('application/json' mime-type) is the default, we just need to remove the dataType property.
 
   ```
   $.ajax({
@@ -195,11 +203,8 @@ Lets review what's going on here.
 
   ```
 
-  Here we have just remove the dataType property. By default, this will ask for a JSON Representation, 'application/json' mime-type.
+  c. Reopen http://localhost:3333 in your browser; this will load the JSON returned from the API into the page.
 
-  c. Go to http://localhost:3000 . This will load the JSON returned from the API into the page.
+4. **Use the Response Data to Render HTML**
 
-
-## AJAX GET :: Lab
-
-Using the JSON returned for all the people make a HTML ordered list of all the people. *Feel free to make it perty*  
+  To do this, we need to edit our `getPeople` function. Rather than simply plopping our data (which, you might note, has already been converted from JSON to a JS object) into the `#container` div wholesale, let's iterate over each item in our data and append HTML bit by bit. You should have a sense for how to do this part already...
