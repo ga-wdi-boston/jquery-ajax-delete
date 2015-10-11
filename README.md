@@ -153,3 +153,27 @@ OK! Now let's make some more requests to the backend API - this time, however, w
 4. **Use the Response Data to Render HTML**
 
   To do this, we need to edit our `getPeople` function. Rather than simply plopping our data (which, you might note, has already been converted from JSON to a JS object) into the `#container` div wholesale, let's iterate over each item in our data and append HTML bit by bit. You should have a sense for how to do this part already...
+
+## Expose your local server (optional).
+
+We are running our server on the same machine as our browser and the curl http client. Often, we'll need to expose this server to a client/customer. But they can't access our local server running on our machine.
+
+To get around this we'll use ``ngrok`` to expose our server to the outside world and our client.
+
+* Download [ngrok](https://ngrok.com/)
+* Install it.
+
+	```bash
+	$ unzip ~/Downloads/ngrok.zip
+	$ mv ~/Downloads/ngrok ~/bin/ngrok
+	```  
+* Run your server in it's own terminal shell, as we did above.  
+	```bash
+	$ rackup -p 3333 people_server.ru 
+	```  
+* Open up a new shell and run ngrok.  
+	```bash
+	$ ngrok http 3333
+	```
+* Use the public URL to access your local server running on port 3333.  In the browser access the URL. Mine is `http://852247c5.ngrok.io/people/3`. Your's will be different.  
+	

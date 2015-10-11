@@ -4,12 +4,24 @@ module PeopleApp
 
   class PeopleService
 
+    # Listen to info about the incoming HTTP request.
+    def http_say(request, media_type)
+      ajax_msg = "This is " + (request.xhr? ? '' : 'not') + " an ajax request"
+
+      %x{ say "request method is #{request.request_method.downcase()}" }
+      %x{ say  "#{ajax_msg}" }
+      %x{ say "request path is #{request.path}" }
+      %x{ say "request media type is #{media_type}" }
+    end
+
     def call(env)
       request = Rack::Request.new(env)
       response = Rack::Response.new
       content = ''
 
       media_type = mime_type(env)
+
+      http_say(request, media_type)
 
       if request.path == '/people'
         content = PeopleApp::People.render(media_type)
