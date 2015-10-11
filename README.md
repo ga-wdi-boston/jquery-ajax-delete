@@ -15,6 +15,15 @@
 - JSON
 - Asynchronous vs Synchronous.  
 
+## Setup
+
+Install the [Postman](https://goo.gl/mNvTRr) Chrome extension. 
+
+Install the [JSON Prettifier](http://goo.gl/0ueVkS) Chrome extension.
+
+Install the [JSON Formatter](http://goo.gl/ZDLWY0) Chrome extension.
+
+
 ## AJAX
 
 AJAX stands for **Asynchronous Javascript And XML**; it's a system (actually, a set of systems) that allows us to asynchronously make HTTP requests and set callbacks to handle whatever we get back.
@@ -24,7 +33,7 @@ AJAX stands for **Asynchronous Javascript And XML**; it's a system (actually, a 
 In particular, we're going to look at jQuery's _implementation_ of AJAX, through some of its built-in methods (such as `.ajax` and `.get`).
 However, in order for our AJAX to work, there needs to be an API behind it, so let's set that up first.
 
-### AJAX GET :: Code-Along
+### AJAX GET 
 
 First, we're going to start up a server that provides an API. The API will be for *Person* resources. This backend server will also serve up all the static files, (html,js,css, ...) in the public directory.
 
@@ -32,6 +41,7 @@ First, we're going to start up a server that provides an API. The API will be fo
 - Run `bundle install`
 - run `rackup -p 3333 people_server.ru` from the root of the repo. This command will start up a server on port 3333.
 
+### We Do
 Let's explore what the backend Person API is.  
 
 **Make an HTTP GET request to /people. Get the resource as json.**
@@ -53,8 +63,6 @@ curl -H 'Accept: application/json' http://localhost:3333/people/3
 ```
 
 Now do the above again using your browser.
-
-> You may want to install the [JSON Prettifier](http://goo.gl/0ueVkS) or [JSON Formatter](http://goo.gl/ZDLWY0) Chrome extensions; these tools make JSON more readable when viewed from a browser window.
 
 <hr>
 
@@ -177,3 +185,33 @@ To get around this we'll use ``ngrok`` to expose our server to the outside world
 	```
 * Use the public URL to access your local server running on port 3333.  In the browser access the URL. Mine is `http://852247c5.ngrok.io/people/3`. Your's will be different.  
 	
+	
+[ngrok Documentation](https://ngrok.com/docs#getting-started)
+
+*Note: you can view the details of your HTTP request in the browser at ``http://localhost:4040``*
+
+### You Do	
+
+Run the car server on port 4444. *Sadly, no speech from this application.**
+
+```bash
+ $ rackup -p 4444 cars_server.ru
+```
+
+Explore the API using ``curl``. 
+
+* HTML GET Request to '/cars'
+* HTML GET Request to '/cars/2'
+* JSON GET Request to '/cars'
+* JSON GET Request to '/cars/2'
+
+Explore the API using ``Postman`` in Chrome. 
+
+* HTML GET Request to '/cars'
+* HTML GET Request to '/cars/2'
+* JSON GET Request to '/cars'
+* JSON GET Request to '/cars/2'
+
+Create a HTML page and an Ajax request to retrieve all the cars. This should be a HTTP GET request using JSON. 
+
+Create a list element ``<li id=car-2>Camry</li>`` for each car returned.
