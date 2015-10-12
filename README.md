@@ -170,6 +170,12 @@ $(document).ready(function(){
 4. **Use the Response Data to Render HTML**
 
   To do this, we need to edit our `getPeople` function. Rather than simply plopping our data (which, you might note, has already been converted from JSON to a JS object) into the `#container` div wholesale, let's iterate over each item in our data and append HTML bit by bit. You should have a sense for how to do this part already...
+  
+### You Do
+
+In your groups diagram the above AJAX call. Draw the Browser, HTTP Request/Response, WEB Server (server and application).
+
+Make sure you diagram each Request/Response step. Including loading the HTML page, and JS file.
 
 ## Expose your local server (optional).
 
