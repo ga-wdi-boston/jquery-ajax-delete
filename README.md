@@ -15,6 +15,12 @@
 -   Request a singular resource from an API server using both `curl` and AJAX
 -   Cache data to economize on requests
 
+## Preparation
+
+1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
+    this repository.
+1.  Install dependencies with `npm install`.
+
 ## Outline
 
 1.  Review URL structure
