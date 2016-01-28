@@ -1,9 +1,9 @@
 'use strict';
 
-var example = require('../assets/scripts/example');
+var listr = require('../assets/scripts/listr');
 
 describe('Example', function() {
   it('is true', function() {
-    expect(example).toBe(true);
+    expect(listr).toBe(true);
   });
 });
