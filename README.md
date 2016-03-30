@@ -33,15 +33,7 @@ We'll make requests of and receive responses from an HTTP server we'll set up
 
 We're now ready to make requests.
 
-## Retrieving data from an API
-
-### AJAX
-
-What's in a name?
-
-AJAX at [MDN](https://developer.mozilla.org/en-US/docs/AJAX).
-
-The [jQuery.ajax()](http://api.jquery.com/jQuery.ajax/) interface.
+## Deleting data from an API
 
 #### DELETE /books/:id
 
