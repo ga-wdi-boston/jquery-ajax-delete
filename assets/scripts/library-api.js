@@ -1,3 +1,9 @@
 'use strict';
 
-module.exports = true;
+const deleteBook = () => {
+
+};
+
+module.exports = {
+  deleteBook,
+};
