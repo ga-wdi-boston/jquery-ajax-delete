@@ -33,23 +33,13 @@ We'll make requests of and receive responses from an HTTP server we'll set up
 
 We're now ready to make requests.
 
-## Deleting data from an API
+### Deleting data from an API
 
 #### DELETE /books/:id
 
-Delete a book from the API
-
-##### Delete a book with curl
-
-Lets delete a book from the api using curl
-
-#### DELETE /books/:id
-
-Delete a book from the API
-
-##### Curl single book code along
-
-Let's write that curl command into a script.
+1.  Delete /books/:id using curl
+1.  Make a form to delete books
+1.  Delete /books/:id using AJAX
 
 ## [License](LICENSE)
 
