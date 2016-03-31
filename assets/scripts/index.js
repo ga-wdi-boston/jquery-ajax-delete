@@ -1,7 +1,17 @@
 'use strict';
 
-// user require with a reference to bundle the file and use it in this file
-// var example = require('./example');
+const libraryApi = require('./library-api');
+const ui = require('./ui');
 
-// use require without a reference to ensure a file is bundled
-require('./example');
+// On document ready
+$(() => {
+  $('#book-form').on('submit', function (event) {
+    event.preventDefault();
+    let bookId = $('#book-form').find("[name='book-id']").val();
+    if (bookId) {
+
+    } else {
+      libraryApi.books(ui.getBooksSuccess, ui.getBooksFail);
+    }
+  });
+});
