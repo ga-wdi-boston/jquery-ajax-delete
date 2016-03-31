@@ -13,8 +13,6 @@ Make HTTP requests using `curl`, and AJAX for:
 
 -   Deleting a resource.
 
-Use response data in future requests
-
 ## Preparation
 
 Set up the client:
@@ -24,12 +22,11 @@ Set up the client:
 1.  Create and checkout a new branch (training).
 1.  Install dependencies with `npm install`.
 
-We'll make requests of and receive responses from an HTTP server we'll set up
- together:
+We'll make requests of and receive responses from the library-api:
 
 1.  Open a new terminal (window or tab).
-1.  Change into the directory where your library-api lives
-1.  Run `rails s` or `rails server`(they do the same thing)
+1.  Change into the directory where your library-api lives.
+1.  Run `rails s` or `rails server` to start the API(they do the same thing).
 
 We're now ready to make requests.
 
