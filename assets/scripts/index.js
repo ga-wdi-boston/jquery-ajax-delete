@@ -10,7 +10,7 @@ const ui = require('./ui');
 // button is clicked
 const onGetBooks = function (event) {
   event.preventDefault();
-  let bookId = $('name=book[id]').val();
+  let bookId = $('#book-id').val();
 
   if (bookId.length === 0) {
     libraryApi.index()
