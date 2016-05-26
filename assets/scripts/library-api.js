@@ -10,9 +10,9 @@ const index = function () {
   });
 };
 
-const show = function (id) {
+const show = function (bookId) {
   return $.ajax({
-    url: app.host + '/books/' + id,
+    url: app.host + '/books/' + bookId,
     method: 'GET',
   });
 };

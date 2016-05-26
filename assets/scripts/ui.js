@@ -8,10 +8,8 @@
 const onSuccess = function (data) {
   if (data.book) {
     console.log(data.book);
-  } else if (data.books) {
-    console.table(data.books);
   } else {
-    console.log('Success!');
+    console.table(data.books);
   }
 };
 
