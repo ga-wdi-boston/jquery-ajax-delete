@@ -1,6 +1,7 @@
 'use strict';
 
 const app = require('./app');
+// const getFormFields = require('../../lib/get-form-fields');
 
 const index = function () {
   return $.ajax({
@@ -9,9 +10,9 @@ const index = function () {
   });
 };
 
-const show = function (id) {
+const show = function (bookId) {
   return $.ajax({
-    url: app.host + '/books/' + id,
+    url: app.host + '/books/' + bookId,
     method: 'GET',
   });
 };
