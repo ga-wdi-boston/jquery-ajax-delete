@@ -1,7 +1,7 @@
 'use strict';
 
 const deleteBookSuccess = () => {
-  
+
 };
 
 const deleteBookFail = () => {
