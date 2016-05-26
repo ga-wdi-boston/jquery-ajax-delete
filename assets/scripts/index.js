@@ -23,7 +23,15 @@ const onGetBooks = function (event) {
   }
 };
 
+const onCreateBook = function (event) {
+  event.preventDefault();
+  libraryApi.create(event.target)
+    .done(ui.onSuccess)
+    .fail(ui.onError);
+};
+
 // On document ready
 $(() => {
   $('#book-request').on('submit', onGetBooks);
+  $('#book-create').on('submit', onCreateBook);
 });
