@@ -7,12 +7,6 @@
       <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <form id="book-form">
-        <label>Book id:
-          <input type="text" name="book-id" value="">
-        </label>
-        <input type="submit" name="submit" value="GET Book(s)">
-      </form>
       <h1>Example</h1>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -22,5 +16,19 @@
       velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.</p>
+
+      <h2>Library</h2>
+
+      <p>
+        Looking for a book or a whole bunch of books? Well you came to the right
+        spot! Provide an ID below to search for a book by ID. If no ID is
+        provided, all books will be returned.
+      </p>
+
+      <h5>Request a Book(s):</h5>
+      <form action="#" id="book-request">
+        <input type="text" name="book[id]" id="book-id" placeholder="ID of Book">
+        <input type="Submit" value="Find Book(s)">
+      </form>
     </body>
 </html>
