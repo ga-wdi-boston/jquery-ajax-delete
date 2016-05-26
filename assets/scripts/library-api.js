@@ -1,16 +1,22 @@
 'use strict';
 
-const books = (success, fail) => {
-  console.log('Start request');
-  $.ajax({
+const app = require('./app');
+
+const index = function () {
+  return $.ajax({
+    url: app.host + '/books',
     method: 'GET',
-    url: 'http://localhost:3000/books',
-  })
-  .done(success)
-  .fail(fail);
-  console.log('Request queued');
+  });
+};
+
+const show = function (id) {
+  return $.ajax({
+    url: app.host + '/books/' + id,
+    method: 'GET',
+  });
 };
 
 module.exports = {
-  books,
+  index,
+  show,
 };
