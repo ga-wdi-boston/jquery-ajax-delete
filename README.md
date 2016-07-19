@@ -52,30 +52,30 @@ The [jQuery.ajax()](http://api.jquery.com/jQuery.ajax/) interface.
 1.  Request verbs
 1.  HTTP request and response
 
-### Connecting to the library-api
+## Connecting to the library-api
 
-#### GET /books
+### GET /books
 
 Retrieve a list of books from the API
 
-##### Browser book collection demonstration
+### Demo: Browser Book Collection
 
 Entering `http://localhost:3000/books` into the chrome address bar.
 
-##### Browser book collection code along
+### Code Along: Browser Book Collection
 
 If not already installed in chrome, let's add a [JSON formatting utility](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en).
 
-##### Curl book collection demonstration
+### Demo: Curl Book Collection
 
 `curl` is a command line utility for making http requests.  We'll use curl to
  retrieve the book collection.
 
-##### Curl book collection code along
+### Code Along: Curl Book Collection
 
 Let's write that curl command into a script.
 
-##### AJAX book collection code along
+### Code Along: AJAX book Collection
 
 We'll take a stepped approach:
 
@@ -88,27 +88,32 @@ We'll take a stepped approach:
 1.  Invoke the collection retrieval method from the submit handler passing the
  success and fail callbacks.
 
-#### GET /books/:id
+## The "A" in AJAX
+
+The A in AJAX stands for asynchronous.
+Let's explore some implications of asynchronous behavior.
+
+### GET /books/:id
 
 Retrieve a book from the API
 
-##### Browser single book demonstration
+### Demo: Browser Single Book
 
 Entering `http://localhost:3000/books/1` into the chrome address bar.
 
-##### Browser single book code along
+### Code Along: Browser Single Book
 
 Entering `http://localhost:3000/books/<integer>` into the chrome address bar.
 
-##### Curl single book demonstration
+### Demo: Curl Single Book
 
 We'll use curl to retrieve the one book at a time.
 
-##### Curl single book code along
+### Code Along: Curl Single Book
 
 Let's write that curl command into a script.
 
-##### AJAX single book code along
+### Code Along: AJAX Single Book
 
 Again, we'll take a stepped approach:
 
@@ -119,11 +124,6 @@ Again, we'll take a stepped approach:
 1.  Add a single book retrieval method to `assets/scripts/library-api.js`.
 1.  Invoke the single book retrieval method from the submit handler passing the
  success and fail callbacks.
-
-#### The "A" in AJAX
-
-The A in AJAX stands for asynchronous.
-Let's explore some implications of asynchronous behavior.
 
 ## [License](LICENSE)
 
