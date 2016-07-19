@@ -111,9 +111,9 @@ We'll use curl to retrieve the one book at a time.
 
 Let's write that curl command into a script.
 
-### Code Along: AJAX Single Book
+### Lab: AJAX Single Book
 
-Again, we'll take a stepped approach:
+Again, take a stepped approach:
 
 1.  Add a text input for a book id to the form in `index.html`.
 1.  Retrieve the value of the id, if any, in the submit handler.
