@@ -30,14 +30,9 @@ We'll make requests of and receive responses from an HTTP server we'll set up
 
 1.  Open a new terminal (window or tab).
 1.  Change into `~/wdi/tmp`.
-1.  Fork and clone [library-api](https://github.com/ga-wdi-boston/library-api).
-1.  Change into the new directory.
-1.  Install dependencies with `bundle install`.
-1.  Add secrets to `config/secrets.yml`.
-1.  Create a database with `rake db:create`.
-1.  Create a database schema with `rake db:migrate`
-1.  Add data to the database with `rake db:seed db:example`
-1.  Run the HTTP server with `rails server`.
+1.  Fork and clone [library-api](https://github.com/ga-wdi-boston/library-api)
+and follow installation instructions listed there.
+1.  Once installed, checkout a `jquery-ajax` branch within `library-api`.
 
 We're now ready to make requests.
 
