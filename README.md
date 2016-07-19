@@ -69,7 +69,7 @@ Entering `http://localhost:3000/books` into the chrome address bar.
 
 ##### Browser book collection code along
 
-If not already installed in chrome, let's add a JSON formatting utility.
+If not already installed in chrome, let's add a [JSON formatting utility](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en).
 
 ##### Curl book collection demonstration
 
