@@ -1,8 +1,7 @@
 'use strict';
 
-// const libraryApi = require('./library-api');
-// const ui = require('./ui');
+// user require with a reference to bundle the file and use it in this file
+// var example = require('./example');
 
-// On document ready
-$(() => {
-});
+// use require without a reference to ensure a file is bundled
+require('./example');
