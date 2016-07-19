@@ -62,8 +62,6 @@ Retrieve a list of books from the API
 
 Entering `http://localhost:3000/books` into the chrome address bar.
 
-### Code Along: Browser Book Collection
-
 If not already installed in chrome, let's add a [JSON formatting utility](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en).
 
 ### Demo: Curl Book Collection
