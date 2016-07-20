@@ -25,8 +25,16 @@ const create = function (form) {
   });
 };
 
+const destroy = function (bookId) {
+  return $.ajax({
+    url: app.host + '/books/' + bookId,
+    method: 'DELETE',
+  });
+};
+
 module.exports = {
   index,
   show,
   create,
+  destroy
 };

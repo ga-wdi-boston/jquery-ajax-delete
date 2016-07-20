@@ -12,4 +12,5 @@ const events = require('./books/events');
 $(() => {
   $('#book-request').on('submit', events.onGetBooks);
   $('#book-create').on('submit', events.onCreateBook);
+  $('#book-delete').on('submit', events.onDeleteBook);
 });

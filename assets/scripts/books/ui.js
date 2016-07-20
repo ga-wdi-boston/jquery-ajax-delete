@@ -17,7 +17,12 @@ const onError = function (response) {
   console.error(response);
 };
 
+const onDelete = function () {
+  console.log('Book was successfully deleted.');
+};
+
 module.exports = {
   onSuccess,
   onError,
+  onDelete
 };

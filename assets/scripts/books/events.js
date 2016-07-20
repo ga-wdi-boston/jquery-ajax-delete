@@ -27,7 +27,17 @@ const onCreateBook = function (event) {
     .fail(ui.onError);
 };
 
+
+const onDeleteBook = function (event) {
+  event.preventDefault();
+  let bookId = $('#book-delete-id').val();
+  libraryApi.destroy(bookId)
+    .done(ui.onDelete)
+    .fail(ui.onError);
+};
+
 module.exports = {
   onGetBooks,
-  onCreateBook
+  onCreateBook,
+  onDeleteBook
 };
