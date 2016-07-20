@@ -1,7 +1,7 @@
 'use strict';
 
 const libraryApi = require('./library-api');
-const ui = require('./ui');
+const ui = require('./books/ui');
 
 // get in the habit of naming your handlers, it eases debugging.
 //
