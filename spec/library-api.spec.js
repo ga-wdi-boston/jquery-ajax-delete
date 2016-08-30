@@ -1,9 +1,9 @@
 'use strict';
 
-var libraryApi = require('../assets/scripts/library-api');
+var booksApi = require('../assets/scripts/books/booksApi');
 
 describe('Example', () => {
   it('is true', () => {
-    expect(libraryApi).toBe(true);
+    expect(booksApi).toBe(true);
   });
 });
