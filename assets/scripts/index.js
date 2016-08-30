@@ -5,3 +5,10 @@
 
 // use require without a reference to ensure a file is bundled
 require('./example');
+
+const bookEvents = require('./books/events');
+
+// On document ready
+$(() => {
+
+});
