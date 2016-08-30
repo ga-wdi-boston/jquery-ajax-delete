@@ -1,3 +1,8 @@
 'use strict';
 
-module.exports = true;
+// const app = require('./app');
+// const getFormFields = require('../../lib/get-form-fields');
+
+module.exports = {
+
+};
