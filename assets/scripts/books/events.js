@@ -2,7 +2,7 @@
 
 // const getFormFields = require('../../../lib/get-form-fields');
 
-const libraryApi = require('../library-api');
+const api = require('../api');
 const ui = require('./ui');
 
 const onGetBooks = function (event) {
@@ -10,11 +10,11 @@ const onGetBooks = function (event) {
   let bookId = $('#book-id').val();
 
   if (bookId.length === 0) {
-    libraryApi.index()
+    api.index()
       .done(ui.onSuccess)
       .fail(ui.onError);
   } else {
-    libraryApi.show(bookId)
+    api.show(bookId)
       .done(ui.onSuccess)
       .fail(ui.onError);
   }
@@ -22,7 +22,7 @@ const onGetBooks = function (event) {
 
 const onCreateBook = function (event) {
   event.preventDefault();
-  libraryApi.create(event.target)
+  api.create(event.target)
     .done(ui.onSuccess)
     .fail(ui.onError);
 };
