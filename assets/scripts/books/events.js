@@ -1,33 +1,26 @@
 'use strict';
 
-// const getFormFields = require('../../../lib/get-form-fields');
+const getFormFields = require('../../../lib/get-form-fields');
 
 const api = require('./api');
 const ui = require('./ui');
 
 const onGetBooks = function (event) {
   event.preventDefault();
-  let bookId = $('#book-id').val();
+  // let bookId = $('#get-book-id').val();
+  let data = getFormFields(event.target);
 
-  if (bookId.length === 0) {
+  if (data.book.id.length === 0) {
     api.index()
       .done(ui.onSuccess)
       .fail(ui.onError);
   } else {
-    api.show(bookId)
+    api.show(data)
       .done(ui.onSuccess)
       .fail(ui.onError);
   }
 };
 
-const onCreateBook = function (event) {
-  event.preventDefault();
-  api.create(event.target)
-    .done(ui.onSuccess)
-    .fail(ui.onError);
-};
-
 module.exports = {
   onGetBooks,
-  onCreateBook
 };
