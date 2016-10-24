@@ -2,6 +2,4 @@
 
 // const app = require('../app.js');
 
-module.exports = {
-
-};
+module.exports = true;
