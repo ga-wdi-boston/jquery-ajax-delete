@@ -10,9 +10,18 @@ const booksUi = require('./ui.js');
 // button is clicked
 const onGetBooks = function (event) {
   event.preventDefault();
-    booksApi.index()
+  let bookId = $('#book-id').val();
+
+  if (bookId.length === 0){
+      booksApi.index()
+        .then(booksUi.onSuccess)
+        .catch(booksUi.onError);
+  } else {
+    booksApi.show(bookId)
       .then(booksUi.onSuccess)
       .catch(booksUi.onError);
+  }
+
 };
 
 module.exports = {

@@ -9,6 +9,14 @@ const index = function () {
   });
 };
 
+const show = function (id) {
+  return $.ajax({
+    url: app.host + '/books/' + id,
+    method: 'GET',
+  });
+};
+
 module.exports = {
-  index
+  index,
+  show
 };
