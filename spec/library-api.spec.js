@@ -1,6 +1,6 @@
 'use strict';
 
-var booksApi = require('../assets/scripts/books/api');
+const booksApi = require('../assets/scripts/books/api');
 
 describe('Example', () => {
   it('is true', () => {
