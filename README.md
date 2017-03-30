@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# jQuery AJAX GET Item
+# jQuery AJAX GET Element
 
 ## Prerequisites
 
@@ -18,12 +18,16 @@ Use response data in future requests
 
 ## Preparation
 
-Set up the client:
 
 1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
     this repository.
 1.  Create and checkout a new branch (training).
 1.  Install dependencies with `npm install`.
+
+
+You can access the same web server that we set up during [jquery-ajax-get-collection](https://github.com/ga-wdi-boston/jquery-ajax-get-collection). Just leave the server running at the same port.
+
+### If you need to set up the web server from scatch:
 
 We'll make requests of and receive responses from an HTTP server we'll set up
  together:
@@ -43,10 +47,6 @@ Retrieve a book from the API
 ### Demo: Browser Single Book
 
 Entering `http://localhost:4741/books/1` into the chrome address bar.
-
-### Code Along: Browser Single Book
-
-Entering `http://localhost:4741/books/<integer>` into the chrome address bar.
 
 ### Demo: Curl Single Book
 

@@ -16,6 +16,10 @@ const show = function (id) {
   })
 }
 
+const delete = function (id) {
+  
+}
+
 module.exports = {
   index,
   show

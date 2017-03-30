@@ -1,9 +1,8 @@
 'use strict'
 
+const booksApi = require('./api.js')
+const booksUi = require('./ui.js')
 const getFormFields = require('../../../lib/get-form-fields')
-
-const api = require('./api.js')
-const ui = require('./ui.js')
 
 // get in the habit of naming your handlers, it eases debugging.
 //
@@ -12,19 +11,25 @@ const ui = require('./ui.js')
 // button is clicked
 const onGetBooks = function (event) {
   event.preventDefault()
-  const book = getFormFields(event.target)
 
-  if (book.id.length === 0) {
-    api.index()
-    .then(ui.onSuccess)
-    .catch(ui.onError)
+  booksApi.index()
+    .then(booksUi.onSuccess)
+    .catch(booksUi.onError)
+}
+const onGetBook = function (event) {
+  event.preventDefault()
+  const book = getFormFields(event.target).book
+
+  if (book.id.length != 0) {
+    booksApi.show(book.id)
+      .then(booksUi.onSuccess)
+      .catch(booksUi.onError)
   } else {
-    api.show(book.id)
-    .then(ui.onSuccess)
-    .catch(ui.onError)
+    console.log("Please provide a book id!")
   }
 }
 
 module.exports = {
-  onGetBooks
+  onGetBooks,
+  onGetBook
 }
