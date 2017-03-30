@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-const setAPIOrigin = require('../../lib/set-api-origin');
-const config = require('./config');
+const setAPIOrigin = require('../../lib/set-api-origin')
+const config = require('./config')
 
 $(() => {
-  setAPIOrigin(location, config);
-});
+  setAPIOrigin(location, config)
+})
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example');
@@ -13,9 +13,9 @@ $(() => {
 // use require without a reference to ensure a file is bundled
 // require('./example');
 
-const bookEvents = require('./books/events');
+const bookEvents = require('./books/events')
 
 // On document ready
 $(() => {
-  $('.books').on('submit', bookEvents.onGetBooks);
-});
+  $('.books').on('submit', bookEvents.onGetBooks)
+})
