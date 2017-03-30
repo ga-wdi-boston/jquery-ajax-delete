@@ -69,6 +69,7 @@ Again, take a stepped approach:
 
 1.  Add a new form with text input for a book id to the form in `index.html`.
 1.  Add a Delete button to the form
+1.  Add an event listener on the form's `submit` action within `assets/scripts/index.js`
 1.  Retrieve the value of the id, if any, in the submit handler.
 1.  Branch on that value in the submit handler.
 1.  Add a delete single book success and fail handler to `assets/scripts/books/ui.js`.

@@ -20,16 +20,29 @@ const onGetBook = function (event) {
   event.preventDefault()
   const book = getFormFields(event.target).book
 
-  if (book.id.length != 0) {
+  if (book.id.length !== 0) {
     booksApi.show(book.id)
       .then(booksUi.onSuccess)
       .catch(booksUi.onError)
   } else {
-    console.log("Please provide a book id!")
+    console.log('Please provide a book id!')
+  }
+}
+const onDeleteBook = function (event) {
+  event.preventDefault()
+  const book = getFormFields(event.target).book
+
+  if (book.id.length !== 0) {
+    booksApi.destroy(book.id)
+    .then(booksUi.onSuccess)
+    .catch(booksUi.onError)
+  } else {
+    console.log('Please provide a book id!')
   }
 }
 
 module.exports = {
   onGetBooks,
-  onGetBook
+  onGetBook,
+  onDeleteBook
 }

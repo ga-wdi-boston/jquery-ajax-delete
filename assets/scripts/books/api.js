@@ -16,11 +16,15 @@ const show = function (id) {
   })
 }
 
-const delete = function (id) {
-  
+const destroy = function (id) {
+  return $.ajax({
+    url: app.host + '/books/' + id,
+    method: 'DELETE'
+  })
 }
 
 module.exports = {
   index,
-  show
+  show,
+  destroy
 }
